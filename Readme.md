@@ -44,3 +44,7 @@ ashish @ 7567 ~/work/gitrepos/cpp_compilation (master)
 ashish @ 7567 ~/work/gitrepos/cpp_compilation (master)
 └─ $ ▶
 
+2. Transitive dependencies : graph is not clear and for preprocessing, files will be opened again.
+ashish @ 7567 ~/work/gitrepos/cpp_compilation (master)
+└─ $ ▶ strace -f g++ -E main.cpp  2>&1 | rg "open" | rg "a\.h" | wc -l
+2
