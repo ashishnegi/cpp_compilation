@@ -55,4 +55,7 @@ For golang :
 ashish @ 7567 ~/go/src/github.com/ashishnegi/cpp_compilation (master)
 └─ $ ▶ strace -f go build -x  2>&1 | rg "open" | rg "/a.go"
 [pid 28014] openat(AT_FDCWD, "/home/ashish/go/src/github.com/ashishnegi/cpp_compilation/a/a.go", O_RDONLY|O_CLOEXEC) = 3
+
+└─ $ ▶ strace -f go build -x  2>&1 | rg "open" | rg "/a/a.go" | wc -l
+1
 ```
