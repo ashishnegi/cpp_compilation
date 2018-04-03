@@ -1,7 +1,6 @@
-ashish @ 7567 ~/work/gitrepos/cpp_compilation (master)
-└─ $ ▶ g++ -c *.cpp
-ashish @ 7567 ~/work/gitrepos/cpp_compilation (master)
-└─ $ ▶ ls -l
+```
+$ g++ -c *.cpp
+$ ls -l
 total 32
 -rw-rw-r-- 1 ashish ashish   73 Apr  3 19:16 a.cpp
 -rw-rw-r-- 1 ashish ashish   48 Apr  3 19:16 a.h
@@ -12,14 +11,13 @@ total 32
 -rw-rw-r-- 1 ashish ashish    0 Apr  3 19:18 commands
 -rw-rw-r-- 1 ashish ashish   82 Apr  3 19:16 main.cpp
 -rw-rw-r-- 1 ashish ashish 1432 Apr  3 19:18 main.o
-ashish @ 7567 ~/work/gitrepos/cpp_compilation (master)
-└─ $ ▶
+```
 
 1. why is a.o bigger than b.o and main.o ?
    Because each cpp is compiled separately and because of #include header in a.cpp
 
-ashish @ 7567 ~/work/gitrepos/cpp_compilation (master)
-└─ $ ▶ nm a.o
+```
+$ nm a.o
                  U __cxa_atexit
                  U __dso_handle
 0000000000000068 t _GLOBAL__sub_I__Z3fooi
@@ -32,19 +30,29 @@ ashish @ 7567 ~/work/gitrepos/cpp_compilation (master)
                  U _ZSt4cout
                  U _ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
 0000000000000000 b _ZStL8__ioinit
-ashish @ 7567 ~/work/gitrepos/cpp_compilation (master)
-└─ $ ▶ nm b.o
+
+$ nm b.o
 0000000000000000 T _Z3barv
                  U _Z3fooi
-ashish @ 7567 ~/work/gitrepos/cpp_compilation (master)
-└─ $ ▶ nm main.o
+
+$ nm main.o
 0000000000000000 T main
                  U _Z3barv
                  U _Z3fooi
-ashish @ 7567 ~/work/gitrepos/cpp_compilation (master)
-└─ $ ▶
+
+```
 
 2. Transitive dependencies : graph is not clear and for preprocessing, files will be opened again.
-ashish @ 7567 ~/work/gitrepos/cpp_compilation (master)
-└─ $ ▶ strace -f g++ -E main.cpp  2>&1 | rg "open" | rg "a\.h" | wc -l
+
+```
+$ strace -f g++ -E main.cpp  2>&1 | rg "open" | rg "a\.h" | wc -l
 2
+```
+
+For golang :
+
+```
+ashish @ 7567 ~/go/src/github.com/ashishnegi/cpp_compilation (master)
+└─ $ ▶ strace -f go build -x  2>&1 | rg "open" | rg "/a.go"
+[pid 28014] openat(AT_FDCWD, "/home/ashish/go/src/github.com/ashishnegi/cpp_compilation/a/a.go", O_RDONLY|O_CLOEXEC) = 3
+```
