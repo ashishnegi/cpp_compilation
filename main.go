@@ -1,9 +1,9 @@
 package main
 
 import (
-	"main/a"
-	"main/b"
-	"main/c"
+	"github.com/ashishnegi/cpp_compilation/a"
+	"github.com/ashishnegi/cpp_compilation/b"
+	"github.com/ashishnegi/cpp_compilation/c"
 )
 
 func main() {

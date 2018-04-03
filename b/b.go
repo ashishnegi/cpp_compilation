@@ -1,7 +1,7 @@
 package b
 
 import (
-	"main/a"
+	"github.com/ashishnegi/cpp_compilation/a"
 )
 
 func Bar() {
